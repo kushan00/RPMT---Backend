@@ -25,13 +25,21 @@ const User = require("../Model/user");
 
             if(groups[i].GroupSuperviser != "")
             {
-             superviserID = groups[i].GroupSuperviser;
+             superviserID = groups[i].GroupSuperviser ;
              superviser = await User.findById(superviserID);
+            }
+            else
+            {
+                superviser ={};
             }
             if(groups[i].GroupCoSuperviser != "")
             {
              coSuperviserID = groups[i].GroupCoSuperviser;          
              cosuperviser = await User.findById(coSuperviserID);
+            }
+            else
+            {
+                cosuperviser ={};
             }
           
             
@@ -76,10 +84,18 @@ const User = require("../Model/user");
          superviserID = groups.GroupSuperviser;
          superviser = await User.findById(superviserID);
         }
+        else
+        {
+            superviser ={};
+        }
         if(groups.GroupCoSuperviser != "")
         {
          coSuperviserID = groups.GroupCoSuperviser;          
          cosuperviser = await User.findById(coSuperviserID);
+        }
+        else
+        {
+            cosuperviser ={};
         }
 
        let data = {res: groups, 

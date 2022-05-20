@@ -175,4 +175,20 @@ const loginUser = async (req, res) => {
     res.json({ message: "User deleted successfully." });
 }
 
-module.exports ={getUsers,getUser ,deleteUser , createUser , updateUser , registerUser , authUser , loginUser};
+
+const getUsersByITNum = async (req, res) => { 
+
+    let id = req.params;
+    console.log("ITnum",id.id);
+
+    try {
+        const users = await User.findOne({"ITnumber" : id.id});
+                 
+        res.status(200).json(users);
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({ message: error.message });
+    }
+}
+
+module.exports ={getUsers,getUser ,deleteUser , createUser , updateUser , registerUser , authUser , loginUser , getUsersByITNum};
