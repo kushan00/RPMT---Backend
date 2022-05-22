@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const user = require("./Routes/userRoutes");
 const group = require("./Routes/groupRoutes");
 
-
+//diniru
 
 const app = express();
 
