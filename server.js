@@ -6,9 +6,9 @@ const mongoose = require("mongoose");
 //import Routes
 const user = require("./Routes/userRoutes");
 const group = require("./Routes/groupRoutes");
+const assignCoSup = require("./Routes/assignCoSupervisorRoutes");
+const assignSup = require("./Routes/assignSupervisorRoutes");
 
-
-//testing
 const app = express();
 
 
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 
 app.use("/user",user);
 app.use("/group",group);
+app.use("/assign",assignCoSup, assignSup);
 
 
 //DB connection
