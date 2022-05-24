@@ -9,6 +9,14 @@ const group = require("./Routes/groupRoutes");
 const assignCoSup = require("./Routes/assignCoSupervisorRoutes");
 const assignSup = require("./Routes/assignSupervisorRoutes");
 
+
+
+
+const topic = require("./Routes/topicRoutes");
+
+
+
+
 const app = express();
 
 
@@ -23,10 +31,13 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("/user", user);
-app.use("/group", group);
+
+app.use("/user",user);
+app.use("/group",group);
+app.use("/topic",topic);
 app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
+
 
 //DB connection
 const DB_URL =
