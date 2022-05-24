@@ -11,7 +11,7 @@ const assignSup = require("./Routes/assignSupervisorRoutes");
 
 const app = express();
 
-//asd
+
 const PORT = process.env.PORT || 5000;
 
 app.use(
