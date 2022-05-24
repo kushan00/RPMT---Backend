@@ -9,6 +9,14 @@ const group = require("./Routes/groupRoutes");
 
 
 
+
+
+
+const topic = require("./Routes/topicRoutes");
+
+
+
+
 const app = express();
 
 
@@ -24,6 +32,7 @@ app.use(bodyParser.json());
 
 app.use("/user",user);
 app.use("/group",group);
+app.use("/topic",topic);
 
 
 //DB connection
