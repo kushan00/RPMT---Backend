@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const Group = require("../Model/assignCoSupersivor");
+const assignCoSupersivor = require("../Model/assignCoSupersivor");
 
 const requestCoSupervisor = async (req, res) => {
   const data = req.body;
 
-  const reqCoSupervisor = new Group({ ...data, creator: req.userId });
+  const reqCoSupervisor = new assignCoSupersivor({ ...data});
 
   try {
     await reqCoSupervisor.save();
@@ -15,4 +15,19 @@ const requestCoSupervisor = async (req, res) => {
   }
 };
 
-module.exports = { requestCoSupervisor };
+const getReqByCoSupervisorId = async (req, res) => { 
+
+  let id = req.params;
+  console.log("co_supervisor_id",id.id);
+
+  try {
+      const co_supervisor = await assignCoSupersivor.find({"co_supervisor_id" : id.id});
+               
+      res.status(200).json(co_supervisor);
+  } catch (error) {
+      console.log(error);
+      res.status(404).json({ message: error.message });
+  }
+}
+
+module.exports = { requestCoSupervisor, getReqByCoSupervisorId };

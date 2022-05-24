@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const CoSupervisorSchema = new mongoose.Schema({
-	supervisor_id: {
+	co_supervisor_id: {
 		type: String,
 		required: true,
 	},
@@ -13,7 +13,16 @@ const CoSupervisorSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		unique: true,
-    }
+    },
+	is_accept: {
+		type: Boolean,
+		required: false,
+		default: null,
+	},
+	date: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
 module.exports = User = mongoose.model("assignCoSupersivor", CoSupervisorSchema);
