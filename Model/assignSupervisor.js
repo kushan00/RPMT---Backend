@@ -13,7 +13,16 @@ const SupervisorSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		unique: true,
-    }
+    },
+	is_accept: {
+		type: Boolean,
+		required: false,
+		default: null,
+	},
+	date: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
 module.exports = User = mongoose.model("assignSupervisor", SupervisorSchema);

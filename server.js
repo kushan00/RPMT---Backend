@@ -11,21 +11,22 @@ const assignSup = require("./Routes/assignSupervisorRoutes");
 
 const app = express();
 
-
 //asd
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin:["http://localhost:1234"],
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:1234"],
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("/user",user);
-app.use("/group",group);
-app.use("/assign",assignCoSup, assignSup);
-
+app.use("/user", user);
+app.use("/group", group);
+app.use("/supervisor", assignSup);
+app.use("/co-supervisor", assignCoSup);
 
 //DB connection
 const DB_URL =
