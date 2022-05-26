@@ -13,6 +13,7 @@ const assignSup = require("./Routes/assignSupervisorRoutes");
 
 
 const topic = require("./Routes/topicRoutes");
+const submissionType = require("./Routes/submissionTypeRoutes");
 
 
 
@@ -36,6 +37,7 @@ app.use("/group",group);
 app.use("/topic",topic);
 app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
+app.use("/submissionType", submissionType);
 
 //DB connection
 const DB_URL =
