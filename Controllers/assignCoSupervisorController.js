@@ -30,4 +30,17 @@ const getReqByCoSupervisorId = async (req, res) => {
   }
 }
 
-module.exports = { requestCoSupervisor, getReqByCoSupervisorId };
+const updateCoSuperviserReq = async (req, res) => {
+  const { id } = req.params;
+  const { group_regnum , is_accept , leader_itnum , superviser_id } = req.body;
+  
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Req with id: ${id}`);
+
+  const updateReq = { group_regnum , is_accept , leader_itnum , superviser_id, _id:id};
+
+  await User.findByIdAndUpdate(id, updateReq, { new: true });
+
+  res.json(updateReq);
+}
+
+module.exports = { requestCoSupervisor, getReqByCoSupervisorId , updateCoSuperviserReq};
