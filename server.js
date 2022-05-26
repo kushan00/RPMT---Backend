@@ -32,12 +32,14 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 app.use("/user",user);
 app.use("/group",group);
 app.use("/topic",topic);
 app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
 app.use("/submissionType", submissionType);
+
 
 //DB connection
 const DB_URL =
