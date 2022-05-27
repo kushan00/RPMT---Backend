@@ -38,7 +38,7 @@ const updateCoSuperviserReq = async (req, res) => {
 
   const updateReq = { group_regnum , is_accept , leader_itnum , superviser_id, _id:id};
 
-  await User.findByIdAndUpdate(id, updateReq, { new: true });
+  await assignCoSupersivor.findByIdAndUpdate(id, updateReq, { new: true });
 
   res.json(updateReq);
 }
