@@ -8,15 +8,11 @@ const user = require("./Routes/userRoutes");
 const group = require("./Routes/groupRoutes");
 const assignCoSup = require("./Routes/assignCoSupervisorRoutes");
 const assignSup = require("./Routes/assignSupervisorRoutes");
-
-
-
-
 const topic = require("./Routes/topicRoutes");
 const submissionType = require("./Routes/submissionTypeRoutes");
+const fileUpload = require('./Routes/fileUpload');
 
-
-
+//diniru
 
 const app = express();
 
@@ -39,7 +35,7 @@ app.use("/topic",topic);
 app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
 app.use("/submissionType", submissionType);
-
+app.use("/fileupload", fileUpload)
 
 //DB connection
 const DB_URL =
