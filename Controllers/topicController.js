@@ -45,13 +45,13 @@ const createTopic = async (req, res) => {
 
 const updateTopic = async (req, res) => {
     const { id } = req.params;
-    const { GroupNo, Topic, Description, is_accept } = req.body;
+    const { GroupNo, Topic, Description, is_accept , LeaderITNum } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No accept with id: ${id}`);
 
-    const updatedTopic = { GroupNo, Topic, Description, is_accept, _id: id };
+    const updatedTopic = { GroupNo, Topic, Description,LeaderITNum, is_accept, _id: id };
 
-    await assignSupervisor.findByIdAndUpdate(id, updatedTopic, { new: true });
+    await topic.findByIdAndUpdate(id, updatedTopic, { new: true });
 
     res.json(updatedTopic);
 }
