@@ -6,7 +6,7 @@ router.post("/uploadfile", async (req, res) => {
     try {
         const file = await File(req.body).save();
 
-        res.status(201).send({data: file, message: "File Uploaded successfully"})
+        res.status(201).send({data: file, message: "File Uploaded successfully" ,status:201})
 
     } catch (error) {
         res.status(500).send({message: "Internal Server Error"})
