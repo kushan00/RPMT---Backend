@@ -3,6 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+
 //import Routes
 const user = require("./Routes/userRoutes");
 const group = require("./Routes/groupRoutes");
@@ -21,7 +22,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:1234"],
+    origin: "*",
   })
 );
 
@@ -53,5 +54,41 @@ mongoose
   .catch((err) => console.log("DB connection failed", err));
 
 app.listen(PORT, () => {
-  console.log(`App is running on ${PORT}`);
+  console.log(`Backend App is running on ${PORT}`);
+});
+
+
+//chat imports
+const http = require("http");
+const { Server } = require("socket.io");
+
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected", socket.id);
+  });
+});
+
+server.listen(3001, () => {
+  console.log("CHAT SERVER RUNNING ON PORT 3001");
 });
