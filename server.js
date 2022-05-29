@@ -11,6 +11,8 @@ const assignSup = require("./Routes/assignSupervisorRoutes");
 const topic = require("./Routes/topicRoutes");
 const submissionType = require("./Routes/submissionTypeRoutes");
 const fileUpload = require('./Routes/fileUpload');
+const markingScheme = require('./Routes/markingScheme')
+const addSubmission = require('./Routes/addSubmissions')
 
 //diniru
 
@@ -36,6 +38,8 @@ app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
 app.use("/submissionType", submissionType);
 app.use("/fileupload", fileUpload)
+app.use("/marking", markingScheme)
+app.use("/submission", addSubmission)
 
 //DB connection
 const DB_URL =
