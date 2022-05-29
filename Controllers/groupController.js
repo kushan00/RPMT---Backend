@@ -6,10 +6,10 @@ const User = require("../Model/user");
  const getGroups = async (req, res) => { 
     try {
         const data = [];
-        var superviserID;
-        var coSuperviserID;
-        var superviser;
-        var cosuperviser;
+        // var superviserID;
+        // var coSuperviserID;
+        // var superviser;
+        // var cosuperviser;
 
         const groups = await Group.find();
         for(let i =0;i<groups.length;i++){
@@ -23,29 +23,29 @@ const User = require("../Model/user");
             const std3 = await User.findById(studentID2);
             const std4 = await User.findById(studentID3);
 
-            if(groups[i].GroupSuperviser != "")
-            {
-             superviserID = groups[i].GroupSuperviser ;
-             superviser = await User.findById(superviserID);
-            }
-            else
-            {
-                superviser ={};
-            }
-            if(groups[i].GroupCoSuperviser != "")
-            {
-             coSuperviserID = groups[i].GroupCoSuperviser;          
-             cosuperviser = await User.findById(coSuperviserID);
-            }
-            else
-            {
-                cosuperviser ={};
-            }
+            // if(groups[i].GroupSuperviser != "")
+            // {
+            //  superviserID = groups[i].GroupSuperviser ;
+            //  superviser = await User.findById(superviserID);
+            // }
+            // else
+            // {
+            //     superviser ={};
+            // }
+            // if(groups[i].GroupCoSuperviser != "")
+            // {
+            //  coSuperviserID = groups[i].GroupCoSuperviser;          
+            //  cosuperviser = await User.findById(coSuperviserID);
+            // }
+            // else
+            // {
+            //     cosuperviser ={};
+            // }
           
             
             data.push({res: groups[i], 
-                       superviserdetails:superviser ? superviser : "",
-                       cosuperviserdetails:cosuperviser ? cosuperviser : "",
+                       //superviserdetails:superviser ? superviser : "",
+                       //cosuperviserdetails:cosuperviser ? cosuperviser : "",
                        grpleader :std1,
                        grpstudent1 :std2,
                        grpstudent2 :std3,
@@ -62,10 +62,10 @@ const User = require("../Model/user");
     const { id } = req.params;
 
     try {
-        var superviserID;
-        var coSuperviserID;
-        var superviser;
-        var cosuperviser;
+        // var superviserID;
+        // var coSuperviserID;
+        // var superviser;
+        // var cosuperviser;
 
         const groups = await Group.findById(id);
         const leaderstudentID = groups.GroupLeaderID;
@@ -79,28 +79,60 @@ const User = require("../Model/user");
         const std4 = await User.findById(studentID3);
 
 
-        if(groups.GroupSuperviser != "")
-        {
-         superviserID = groups.GroupSuperviser;
-         superviser = await User.findById(superviserID);
-        }
-        else
-        {
-            superviser ={};
-        }
-        if(groups.GroupCoSuperviser != "")
-        {
-         coSuperviserID = groups.GroupCoSuperviser;          
-         cosuperviser = await User.findById(coSuperviserID);
-        }
-        else
-        {
-            cosuperviser ={};
-        }
+        // if(groups.GroupSuperviser != "")
+        // {
+        //  superviserID = groups.GroupSuperviser;
+        //  superviser = await User.findById(superviserID);
+        // }
+        // else
+        // {
+        //     superviser ={};
+        // }
+        // if(groups.GroupCoSuperviser != "")
+        // {
+        //  coSuperviserID = groups.GroupCoSuperviser;          
+        //  cosuperviser = await User.findById(coSuperviserID);
+        // }
+        // else
+        // {
+        //     cosuperviser ={};
+        // }
 
        let data = {res: groups, 
-                    superviserdetails:superviser ? superviser : "",
-                    cosuperviserdetails:cosuperviser ? cosuperviser : "",
+                    //superviserdetails:superviser ? superviser : "",
+                    //cosuperviserdetails:cosuperviser ? cosuperviser : "",
+                   grpleader :std1,
+                   grpstudent1 :std2,
+                   grpstudent2 :std3,
+                   grpstudent3 :std4};
+        
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+const getGroupByNumber = async (req, res) => { 
+    const { id } = req.params;
+   console.log(id);
+    try {
+
+
+        const groups = await Group.findOne({"GroupNo":id});
+        console.log("data",groups);
+        const leaderstudentID = groups.GroupLeaderID;
+        const studentID1 = groups.GroupMember1ID;
+        const studentID2 = groups.GroupMember2ID;
+        const studentID3 = groups.GroupMember3ID;
+
+        const std1 = await User.findById(leaderstudentID);
+        const std2 = await User.findById(studentID1);
+        const std3 = await User.findById(studentID2);
+        const std4 = await User.findById(studentID3);
+
+
+
+       let data = {res: groups, 
                    grpleader :std1,
                    grpstudent1 :std2,
                    grpstudent2 :std3,
@@ -130,11 +162,11 @@ const User = require("../Model/user");
 
  const updateGroupById = async (req, res) => {
     const { id } = req.params;
-    const { GroupNo, GroupSuperviser, GroupCoSuperviser , GroupLeaderID , GroupMember1ID, GroupMember2ID , GroupMember3ID} = req.body;
+    const { GroupNo,  GroupLeaderID , GroupMember1ID, GroupMember2ID , GroupMember3ID} = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No room with id: ${id}`);
 
-    const updatedGroup = { GroupNo, GroupSuperviser, GroupCoSuperviser , GroupLeaderID , GroupMember1ID, GroupMember2ID , GroupMember3ID, _id:id};
+    const updatedGroup = { GroupNo,  GroupLeaderID , GroupMember1ID, GroupMember2ID , GroupMember3ID, _id:id};
 
     await Group.findByIdAndUpdate(id, updatedGroup, { new: true });
 
@@ -154,4 +186,4 @@ const User = require("../Model/user");
 
 
 
-module.exports ={ deleteGroup , updateGroupById , getGroups , getGroupById ,createGroup };
+module.exports ={ deleteGroup , updateGroupById , getGroups , getGroupById ,createGroup , getGroupByNumber};
