@@ -1,29 +1,27 @@
 const mongoose = require("mongoose"); 
 
-const GroupSchema = new mongoose.Schema({
+const GroupPanelSchema = new mongoose.Schema({
 	GroupNo: {
 		type: String,
 		required: true,
 	},
-	// GroupSuperviser: {
-	// 	type: String,
-	// },
-	// GroupCoSuperviser: {
-	// 	type: String,
-	// },
-	GroupLeaderID: {
+	GroupID: {
 		type: String,
 		required: true,
 	},
-	GroupMember1ID: {
+	PanelMember1ID: {
 		type: String,
 		required: true,
 	},
-	GroupMember2ID: {
+	PanelMember2ID: {
 		type: String,
 		required: true,
 	},
-	GroupMember3ID: {
+	PanelMember3ID: {
+		type: String,
+		required: true,
+	},
+	PanelMember4ID: {
 		type: String,
 		required: true,
 	},
@@ -33,4 +31,4 @@ const GroupSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = Group = mongoose.model("group", GroupSchema);
+module.exports = GroupPanel = mongoose.model("group panel", GroupPanelSchema);

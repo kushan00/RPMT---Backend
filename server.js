@@ -14,8 +14,8 @@ const submissionType = require("./Routes/submissionTypeRoutes");
 const fileUpload = require('./Routes/fileUpload');
 const markingScheme = require('./Routes/markingScheme')
 const addSubmission = require('./Routes/addSubmissions')
+const GroupPanel = require('./Routes/GroupPanelRoutes');
 
-//diniru
 
 const app = express();
 
@@ -38,9 +38,10 @@ app.use("/topic",topic);
 app.use("/supervisor", assignSup);
 app.use("/co-supervisor", assignCoSup);
 app.use("/submissionType", submissionType);
-app.use("/fileupload", fileUpload)
-app.use("/marking", markingScheme)
-app.use("/submission", addSubmission)
+app.use("/fileupload", fileUpload);
+app.use("/marking", markingScheme);
+app.use("/submission", addSubmission);
+app.use("/GrouPanel",GroupPanel);
 
 //DB connection
 const DB_URL =
