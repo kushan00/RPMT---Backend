@@ -31,6 +31,8 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use("/user",user);
 app.use("/group",group);
@@ -43,15 +45,15 @@ app.use("/marking", markingScheme);
 app.use("/submission", addSubmission);
 app.use("/GrouPanel",GroupPanel);
 
-//DB connection
-const DB_URL =
-  "mongodb+srv://admin:admin@reaerchtool.celhc.mongodb.net/RPMTDatabase?retryWrites=true&w=majority";
-mongoose
-  .connect(DB_URL, {
+
+
+mongoose.connect(
+  process.env.DB_URL, {
     //type warnings
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
+
   .then(() => {
     console.log("Mongo DB connected successfully");
   })
