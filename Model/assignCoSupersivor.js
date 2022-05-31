@@ -25,4 +25,4 @@ const CoSupervisorSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = User = mongoose.model("assignCoSupersivor", CoSupervisorSchema);
+module.exports = AssignCoSuperviser = mongoose.model("assignCoSupersivor", CoSupervisorSchema);

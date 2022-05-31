@@ -18,12 +18,12 @@ const submission = new mongoose.Schema({
     },
 
     file: { 
-        type: String, 
-        required: true 
+        type: String,
     },
 
     comment: { 
         type: String,
+        default:null,
     },
 });
 

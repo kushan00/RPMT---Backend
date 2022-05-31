@@ -25,4 +25,4 @@ const SupervisorSchema = new mongoose.Schema({
 	},
 });
 
-module.exports = User = mongoose.model("assignSupervisor", SupervisorSchema);
+module.exports = AssignSuperviser = mongoose.model("assignSupervisor", SupervisorSchema);
