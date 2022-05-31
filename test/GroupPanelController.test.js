@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const User = require("../Model/user");
+const GroupPanel = require("../Model/GroupPanel");
 
 
-  test("create User without required field should failed", async () => {
-    const adminWithoutRequiredField = new User({ name: "Name testing",password:"testing@gmail.com" });
+  test("create GroupPanel without required field should failed", async () => {
+    const adminWithoutRequiredField = new GroupPanel({ GroupNo: "GroupNo testing",GroupID:"Testing GroupID" });
     let err;
     try {
       const savedAdminWithoutRequiredField =
@@ -13,6 +13,6 @@ const User = require("../Model/user");
       err = error;
     }
     expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
-    expect(err.errors.email).toBeDefined();
+    expect(err.errors.PanelMember1ID).toBeDefined();
   });
 

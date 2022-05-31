@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const User = require("../Model/user");
+const File = require('../Model/fileUpload');
 
 
-  test("create User without required field should failed", async () => {
-    const adminWithoutRequiredField = new User({ name: "Name testing",password:"testing@gmail.com" });
+
+  test("create File without required field should failed", async () => {
+    const adminWithoutRequiredField = new File({ topic: "topic Testing",description:"description testing" });
     let err;
     try {
       const savedAdminWithoutRequiredField =
@@ -13,6 +14,6 @@ const User = require("../Model/user");
       err = error;
     }
     expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
-    expect(err.errors.email).toBeDefined();
+    expect(err.errors.file).toBeDefined();
   });
 
