@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const File = require('../Model/markingScheme');
 
 const {newMarkingScheme, allMarkings} = require ("../Controllers/markingSchemeController");
 

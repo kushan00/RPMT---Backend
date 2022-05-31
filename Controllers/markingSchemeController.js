@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const File = require('../Model/addSubmissions');
+const File = require('../Model/markingScheme');
 
 //new marking scheme
 const newMarkingScheme = async (req, res) => {
@@ -9,7 +9,7 @@ const newMarkingScheme = async (req, res) => {
         res.status(201).send({data: file, message: "File Uploaded successfully" ,status:201})
 
     } catch (error) {
-        res.status(500).send({message: "Internal Server Error"})
+        res.status(500).send({message: "Internal Server Error" , error:error})
 
     }
 }
