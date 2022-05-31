@@ -63,6 +63,32 @@ const User = require("../Model/user");
 }
 
 
+const getGroupPanelByUserId = async (req, res) => { 
+    const { id } = req.params;
+    console.log(id);
+
+    try {
+
+        const groups1 = await GroupPanel.find({"PanelMember1ID":id});
+        const groups2 = await GroupPanel.find({"PanelMember2ID":id});
+        const groups3 = await GroupPanel.find({"PanelMember3ID":id});
+        const groups4 = await GroupPanel.find({"PanelMember4ID":id});
+                           
+        let data = { 
+                   PanelMember1 :groups1,
+                   PanelMember2 :groups2,
+                   PanelMember3 :groups3,
+                   PanelMember4 :groups4
+                };
+        
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+
+
  const createGroupPanel = async (req, res) => {
     const PanelData = req.body;
 
@@ -104,4 +130,4 @@ const User = require("../Model/user");
 
 
 
-module.exports ={ deleteGroupPanel , updateGroupPanelById , createGroupPanel , getGroupPanelById ,getGroupPanels };
+module.exports ={ getGroupPanelByUserId,deleteGroupPanel , updateGroupPanelById , createGroupPanel , getGroupPanelById ,getGroupPanels };
